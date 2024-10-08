@@ -26,7 +26,7 @@ exports.deleteSize = async (req, res) => {
   }
 }
 
-exports.updateSize =  async (req, res) => {
+exports.updateSize = async (req, res) => {
   try {
     const { id } = req.params;
     const { quantity } = req.body;

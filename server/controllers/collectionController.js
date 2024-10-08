@@ -1,9 +1,9 @@
 const User = require('../models/User');
 const Collection = require("../models/Collection");
-const jwt =  require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 
-exports.getCollections = async (req,res)=>{
+exports.getCollections = async (req, res) => {
 
   const token = req.headers.authorization?.split(' ')[1];
 
@@ -19,7 +19,7 @@ exports.getCollections = async (req,res)=>{
 }
 
 
-exports.createCollection = async (req,res)=>{
+exports.createCollection = async (req, res) => {
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) return res.status(401).json({ message: 'Access denied' });
 
@@ -59,7 +59,7 @@ exports.createCollection = async (req,res)=>{
   }
 }
 
-exports.updateCollection = async (req,res)=>{
+exports.updateCollection = async (req, res) => {
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) return res.status(401).json({ message: 'Access denied' });
 
@@ -89,7 +89,7 @@ exports.updateCollection = async (req,res)=>{
   }
 }
 
-exports.deleteCollection = async(req,res)=>{
+exports.deleteCollection = async (req, res) => {
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) return res.status(401).json({ message: 'Access denied' });
 
@@ -116,7 +116,7 @@ exports.deleteCollection = async(req,res)=>{
   }
 }
 
-exports.getCollectionByAddress = async (req,res)=>{
+exports.getCollectionByAddress = async (req, res) => {
   const { address } = req.params;
   try {
     const collection = await Collection.findOne({ collectionAddress: address });
@@ -129,7 +129,7 @@ exports.getCollectionByAddress = async (req,res)=>{
   }
 }
 
-exports.getCollectionByCollectionAddress = async(req,res)=>{
+exports.getCollectionByCollectionAddress = async (req, res) => {
   try {
     const { collectionAddress } = req.params;
     const collection = await Collection.findOne({ collectionAddress });

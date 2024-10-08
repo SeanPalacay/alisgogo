@@ -1,9 +1,9 @@
-const User =  require('../models/User');
-const bcrypt =  require('bcryptjs');
-const jwt =  require('jsonwebtoken');
+const User = require('../models/User');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 
-exports.loginUser =async (req,res)=>{
+exports.loginUser = async (req, res) => {
   const { username, password } = req.body;
   try {
     const user = await User.findOne({ username });
@@ -25,7 +25,7 @@ exports.loginUser =async (req,res)=>{
   }
 }
 
-exports.registerUser = async(req,res)=>{
+exports.registerUser = async (req, res) => {
   const { username, password, email, solanaWallet } = req.body;
   try {
     const salt = await bcrypt.genSalt(10);
