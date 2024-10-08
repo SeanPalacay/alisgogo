@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const Hero: React.FC = () => {
   return (
@@ -87,21 +88,24 @@ const Hero: React.FC = () => {
           />
         </motion.div>
         <motion.div 
-          className="absolute w-[237px] h-14 top-[430px] left-[660px]"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
+        className="absolute w-[237px] h-14 top-[430px] left-[660px]"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <Link href="/marketplace">
           <div className="relative w-[235px] h-14 rounded-[50px] border border-black flex items-center justify-center cursor-pointer">
             <div className="[font-family:'Syne',Helvetica] font-semibold text-black text-xl text-center tracking-[0] leading-[30px] whitespace-nowrap">
               Sell Your Creation
             </div>
           </div>
-        </motion.div>
-        <motion.div 
-          className="absolute w-[289px] h-14 top-[430px] left-[345px]"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
+        </Link>
+      </motion.div>
+      <motion.div 
+        className="absolute w-[289px] h-14 top-[430px] left-[345px]"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <Link href="/studio">
           <div className="relative w-[287px] h-14 rounded-[50px] [background:linear-gradient(180deg,rgb(105,134.92,241)_0%,rgb(126.58,49.96,193.37)_52.08%,rgb(231.63,78.17,216.28)_100%)] flex items-center justify-center cursor-pointer">
             <div className="left-6 absolute top-[13px] font-heading-5 font-[number:var(--heading-5-font-weight)] text-white text-[length:var(--heading-5-font-size)] text-center tracking-[var(--heading-5-letter-spacing)] leading-[var(--heading-5-line-height)] whitespace-nowrap [font-style:var(--heading-5-font-style)]">
               Explore Collection
@@ -112,7 +116,8 @@ const Hero: React.FC = () => {
               src="static/img/arrow-icon-6.svg"
             />
           </div>
-        </motion.div>
+        </Link>
+      </motion.div>
       </div>
     </motion.div>
   );

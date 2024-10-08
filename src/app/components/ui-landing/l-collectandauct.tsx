@@ -74,6 +74,7 @@ const CollectionsAndAuctions: React.FC = () => {
             />
           </div>
           <motion.button
+          href="/collection"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="flex items-center px-4 py-2 mt-4 text-sm font-semibold text-white rounded-full bg-gradient-to-r from-purple-500 to-pink-500"
